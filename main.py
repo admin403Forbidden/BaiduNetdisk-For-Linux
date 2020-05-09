@@ -7,8 +7,17 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
-
+from upload import *
 import sys
+
+class UL(QtWidgets.QMainWindow,UpLoad):
+    def __init__(self):
+        super(UL,self).__init__()
+        self.setupUi(self)
+        self.registerEvent()
+    def registerEvent(self):
+        pass
+
 
 class MainUI(Ui_MainWindow, QMainWindow):
     def __init__(self, parent=None):
@@ -26,8 +35,28 @@ class MainUI(Ui_MainWindow, QMainWindow):
         item_1.setText(_translate("MainWindow", "BACK"))
         item_1 = self.tableWidget.item(0, 2)
         item_1.setText(_translate("MainWindow", "返回"))
+        self.pushButton_2.clicked.connect(self.on_btn_click)
+        Folder = QtGui.QIcon()
+        Folder.addPixmap(QtGui.QPixmap("Folder.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+
+        for i in range(1,10):
+
+            self.tableWidget.setRowCount(i+1)
+            newItem = QTableWidgetItem()
+            newItem.setIcon(Folder)
+            self.tableWidget.setItem(i, 0,newItem)
+            # 添加数据
+            newItem = QTableWidgetItem('张三')
+            self.tableWidget.setItem(i, 0, newItem)
+
+            newItem = QTableWidgetItem('男')
+            self.tableWidget.setItem(i, 1, newItem)
+
+            newItem = QTableWidgetItem('160')
+            self.tableWidget.setItem(i, 2, newItem)
     def on_btn_click(self):
-        pass
+        self.up = UL()
+        self.up.show()
     def Exit(self):
         self.close()
     def Mini(self):
@@ -45,10 +74,10 @@ bp.upload(localpath= r'上传文件绝对路径', remotepath= 'zhoulong', ondup=
 print('上传完成！！')
 bp.download(remotepath = 'zhoulong', localpath = r'下载文件输出文件夹')
 print('下载完成！！')
-'''
+
 print("ST")
-bp.download(remotepath="骆驼祥子   读书笔记 7.pptx",localpath=r"E:\\")
-print("Done")
+bp.download(remotepath="骆驼祥子   读书笔记 7.pptx",localpath=r"F:\\Baidu\\")
+print("Done")'''
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     ui = MainUI()

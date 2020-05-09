@@ -23,6 +23,7 @@ class Ui_MainWindow(object):
         self.left_close.setGeometry(QtCore.QRect(20, 20, 21, 21))
         self.left_close.setText("")
         self.left_close.setObjectName("left_close")
+        self.left_close.clicked.connect(self.Exit)
         self.left_visit = QtWidgets.QPushButton(self.centralwidget)
         self.left_visit.setGeometry(QtCore.QRect(50, 20, 21, 21))
         self.left_visit.setText("")
@@ -31,6 +32,7 @@ class Ui_MainWindow(object):
         self.left_mini.setGeometry(QtCore.QRect(80, 20, 21, 21))
         self.left_mini.setText("")
         self.left_mini.setObjectName("left_mini")
+        self.left_mini.clicked.connect(self.Mini)
         self.label = QtWidgets.QLabel(self.centralwidget)
         self.label.setGeometry(QtCore.QRect(180, 10, 941, 41))
         self.label.setObjectName("label")
@@ -107,6 +109,10 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+    def Exit(self):
+        MainWindow.close()
+    def Mini(self):
+        MainWindow.showMinimized()
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
@@ -120,7 +126,7 @@ class Ui_MainWindow(object):
         item = self.tableWidget.horizontalHeaderItem(2)
         item.setText(_translate("MainWindow", "添加时间"))
         __sortingEnabled = self.tableWidget.isSortingEnabled()
-        self.tableWidget.setSortingEnabled(False)
+        self.tableWidget.setSortingEnabled(True)
         item = self.tableWidget.item(0, 0)
         item.setText(_translate("MainWindow", "bypy"))
         item = self.tableWidget.item(0, 1)
@@ -128,6 +134,12 @@ class Ui_MainWindow(object):
         item = self.tableWidget.item(0, 2)
         item.setText(_translate("MainWindow", "创建时自动添加"))
         ##########
+        #item_1 = self.tableWidget.item(1, 0)
+        #item_1.setText(_translate("MainWindow", ".."))
+        #item_1 = self.tableWidget.item(1, 1)
+        #item_1.setText(_translate("MainWindow", "BACK"))
+        #item_1 = self.tableWidget.item(1, 2)
+        #item_1.setText(_translate("MainWindow", "返回"))
         self.pushButton.setText(_translate("MainWindow", "下载"))
         self.pushButton_2.setText(_translate("MainWindow", "上传"))
         self.pushButton_3.setText(_translate("MainWindow", "删除"))
